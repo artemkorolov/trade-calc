@@ -13,12 +13,12 @@ export const StrategyForm = ({ onAddStrategy }: StrategyFormProps) => {
 	const [coin, setCoin] = useState('');
 	const [buyPrice, setBuyPrice] = useState('');
 	const [investSum, setInvestSum] = useState('');
-	const [target, setTarget] = useState('5')
+	const [target, setTarget] = useState('')
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
 
-		if (!coin || !buyPrice || !investSum) {
+		if (!coin || !buyPrice || !investSum || !target) {
 			return;
 		}
 
