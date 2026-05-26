@@ -29,7 +29,7 @@ export const StrategyForm = ({ onAddStrategy }: StrategyFormProps) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className="strategy-form">
 			<input
 				type="text"
 				placeholder="Coin"

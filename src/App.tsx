@@ -14,7 +14,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='app-container'>
       <h1>Crypto Strategy</h1>
       <StrategyForm onAddStrategy={handleAddStrategy} />
       <div>
@@ -22,7 +22,7 @@ function App() {
         {strategies.length === 0 ? (
           <p>Add your first coin to calculate</p>
         ) : (
-          <div>
+          <div className='result-grid'>
             {strategies.map((strat) => (
               <div key={strat.id}>
                 <h3>Coin: {strat.coin}</h3>
