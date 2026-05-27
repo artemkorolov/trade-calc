@@ -32,30 +32,30 @@ export const StrategyForm = ({ onAddStrategy }: StrategyFormProps) => {
 		<form onSubmit={handleSubmit} className="strategy-form">
 			<input
 				type="text"
-				placeholder="Coin"
+				placeholder="Монета (напр. LINK)"
 				value={coin}
 				onChange={(event) => setCoin(event.target.value)}
 			/>
 			<input
 				type="number"
-				placeholder="Buy Price"
+				placeholder="Ціна покупки ($)"
 				value={buyPrice}
 				onChange={(event) => setBuyPrice(event.target.value)}
 			/>
 			<input
 				type="number"
-				placeholder="Investment Amount"
+				placeholder="Сума інвестиції ($)"
 				value={investSum}
 				onChange={(event) => setInvestSum(event.target.value)}
 			/>
 			<input
 				type="number"
-				placeholder="Target (%)"
+				placeholder="Мета (%)"
 				value={target}
 				onChange={(event) => setTarget(event.target.value)}
 			/>
 
-			<button type="submit">Calculate</button>
+			<button type="submit">Розрахувати</button>
 		</form>
 	)
 
