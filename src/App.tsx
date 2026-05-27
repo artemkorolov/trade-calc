@@ -7,10 +7,36 @@ import './App.css';
 function App() {
   const [strategies, setStrategies] = useState<CryptoStrategy[]>([]);
 
-  const handleAddStrategy = (coin: string, buyPrice: number, investSum: number, target: number) => {
-    const newStrategy = calculateStrategy(coin, buyPrice, investSum, target);
+  const handleAddStrategy = async (coin: string, buyPrice: number, investSum: number, target: number) => {
+    try {
+      const respons = await fetch('http://localhost:5000/api/calculate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          coin,
+          buyPrice,
+          investSumUsdt: investSum,
+          targetPercent: target,
+        }),
+      });
 
-    setStrategies((prew) => [newStrategy, ...prew]);
+      if (!respons.ok) {
+        throw new Error('Помилка сервера під час розрахунку');
+      }
+
+      const newStrategy: CryptoStrategy = await respons.json();
+
+      setStrategies((prev) => [newStrategy, ...prev]);
+
+    } catch (error) {
+      console.error('Бекенд недоступний. Вмикаю локальний калькулятор.', error);
+
+      const fallBackStrategy = calculateStrategy(coin, buyPrice, investSum, target);
+
+      setStrategies((prev) => [fallBackStrategy, ...prev]);
+    }
   }
 
   return (
