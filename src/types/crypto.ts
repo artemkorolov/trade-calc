@@ -3,7 +3,7 @@ export interface CryptoStrategy {
 	coin: string;
 	buyPrice: number;
 	sellPrice: number;
-	averagingPrice15: number;
+	averagingPrice: number;
 	targetPercent: number;
 	investSumUsdt: number;
 	sellSumAfter: number;

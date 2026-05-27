@@ -7,11 +7,16 @@ export const calculateStrategy = (
 	targetPercent: number
 ): CryptoStrategy => {
 
-	const averagingPrice15 = buyPrice * 0.85;
+	const averagingPrice = buyPrice * 0.90;
 	const sellPrice = buyPrice * (1 + targetPercent / 100);
+
 	const coinAmount = investSumUsdt / buyPrice;
 	const sellSumAfter = coinAmount * sellPrice;
-	const transactionFee = investSumUsdt * 0.001;
+
+	const buyFee = investSumUsdt * 0.00075;
+	const sellFee = sellSumAfter * 0.00075;
+	const transactionFee = buyFee + sellFee;
+
 	const netProfit = sellSumAfter - investSumUsdt - transactionFee;
 
 	return {
@@ -19,13 +24,12 @@ export const calculateStrategy = (
 		coin: coin.toUpperCase(),
 		buyPrice,
 		sellPrice,
-		averagingPrice15,
+		averagingPrice,
 		targetPercent,
 		investSumUsdt,
 		sellSumAfter,
 		coinAmount,
 		transactionFee,
 		netProfit
-
 	};
 };

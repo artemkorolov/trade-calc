@@ -26,6 +26,7 @@ export const StrategyForm = ({ onAddStrategy }: StrategyFormProps) => {
 		setCoin('');
 		setBuyPrice('');
 		setInvestSum('');
+		setTarget('');
 	};
 
 	return (

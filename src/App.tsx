@@ -28,8 +28,8 @@ function App() {
                 <h3>Монета: {strat.coin}</h3>
                 <p>Ціна покупки: <strong>{strat.buyPrice} $</strong></p>
                 <p>Ціна продажу: (+{strat.targetPercent}%): <strong>{strat.sellPrice.toFixed(2)} $</strong></p>
-                <p>Ціна усереднення (-15%): <strong>{strat.averagingPrice15.toFixed(2)} $</strong></p>
-                <p>Кількість монет: {strat.coinAmount.toFixed(4)}</p>
+                <p>Ціна усереднення (-10%): <strong>{strat.averagingPrice.toFixed(2)} $</strong></p>
+                <p>Кількість монет: <strong>{strat.coinAmount.toFixed(2)}</strong></p>
                 <p>Чистий прибуток: <strong>+{strat.netProfit.toFixed(2)} $</strong></p>
               </div>
             ))}
