@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StrategyForm } from './components/StrategyForm';
 import { calculateStrategy } from './utils/calculators';
 import type { CryptoStrategy } from './types/crypto';
@@ -6,6 +6,23 @@ import './App.css';
 
 function App() {
   const [strategies, setStrategies] = useState<CryptoStrategy[]>([]);
+
+  useEffect(() => {
+    const fetchStrategies = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/strategies');
+        if (!response.ok) {
+          throw new Error('Не вдалося отримати історію');
+        }
+        const data: CryptoStrategy[] = await response.json();
+        setStrategies(data);
+      } catch (error) {
+        console.error('Помилка завантаження історії:', error);
+      }
+    };
+
+    fetchStrategies();
+  }, []);
 
   const handleAddStrategy = async (coin: string, buyPrice: number, investSum: number, target: number) => {
     try {
