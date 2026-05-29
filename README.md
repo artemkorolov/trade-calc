@@ -1,11 +1,15 @@
-# Trade Calc 📊
+# Trade Calc
 
-A minimalist cryptocurrency position and averaging calculator built to streamline trading strategies.
+A minimalist Full-Stack cryptocurrency position and averaging calculator built to streamline trading strategies.
 
-## 🚀 Features
+## Features
 
-- **Position Calculation:** Instant computation of coin amount based on investment size.
-- **Take-Profit Tracking:** Automatic target price calculation based on custom percentage goals.
-- **Averaging Strategy:** Clear visibility of the averaging entry point.
-- **Fee Inclusion:** Factor in standard spot trading transaction fees (0.1%).
+- **Position & DCA Calculation:** Instant computation of asset amounts, entry points, and averaging logic.
+- **Take-Profit & Fee Tracking:** Automatic target price calculation factoring in exchange fees (0.1%).
+- **Data Persistence:** Automated saving of trading strategies to a remote database via custom backend.
 - **Strict Validations:** Bulletproof form handlers ensuring zero mathematical edge-case errors.
+
+## Tech Stack
+
+- **Frontend:** React, TypeScript, Tailwind CSS, Vite
+- **Backend & DB:** Node.js, Express.js, PostgreSQL / Supabase
