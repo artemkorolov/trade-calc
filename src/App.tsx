@@ -24,6 +24,25 @@ function App() {
     fetchStrategies();
   }, []);
 
+  const handleDeleteStrategy = async (id: number | string) => {
+    if (!window.confirm('Ви впевнені, що хочете видалити цю стратегію?')) return;
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/strategies/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Не вдалося видалити стратегію');
+      }
+
+      setStrategies((prev) => prev.filter((strat) => strat.id !== id));
+    } catch (error) {
+      console.error('Помилка при видаленні:', error);
+      alert('Не вдалося видалити стратегію. Можливо, бекенд недоступний.');
+    }
+  };
+
   const handleAddStrategy = async (coin: string, buyPrice: number, investSum: number, target: number) => {
     try {
       const respons = await fetch('http://localhost:5000/api/calculate', {
@@ -74,6 +93,12 @@ function App() {
                 <p>Ціна усереднення (-10%): <strong>{strat.averagingPrice.toFixed(2)} $</strong></p>
                 <p>Кількість монет: <strong>{strat.coinAmount.toFixed(2)}</strong></p>
                 <p>Чистий прибуток: <strong>+{strat.netProfit.toFixed(2)} $</strong></p>
+
+                <button
+                  onClick={() => strat.id && handleDeleteStrategy(strat.id)}
+                >
+                  Видалити
+                </button>
               </div>
             ))}
           </div>
